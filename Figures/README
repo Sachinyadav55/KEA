@@ -14,4 +14,6 @@
 
 *F2d Response rate regression
 	scatter plot of predicted and observed ressponse rate and linear regression
+	R script:
+	source("rr.r")
 
