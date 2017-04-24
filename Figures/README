@@ -1,0 +1,17 @@
+*bash scripts 
+	figures_run.sh
+	run for all figures
+	
+*F1 3 model compare bar and roc  
+		R scripts:
+		source("bar.r")
+		source("roc.r")
+
+*F2c GEO datasets density plot
+	All 3 GEO datasets are pre-processed with pipeline script from KEA Prediction_R package. Detailed readme file is provided there.
+	R script:
+	source("density_plot.r")
+
+*F2d Response rate regression
+	scatter plot of predicted and observed ressponse rate and linear regression
+

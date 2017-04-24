@@ -1,0 +1,149 @@
+Drug response prediction
+
+Oracle VM VirtualBox
+we provide a VirtualBox image file. It's set up ready to run this program with testing data set.
+
+How to set up:
+Instructions for Mac or Linux
+Install Virtual Box and Import the Virtual Machine on Mac or Linux
+1. Install VirtualBox
+a. Select the VirtualBox installer for Mac
+b. Click through the dialogs and install VirtualBox
+c. Restart your computer
+d. Find "Oracle VM VirtualBox" in your applications and open the program
+2. In the VirtualBox window, select File -> Import Appliance...
+3. Click Open Appliance...
+4. Select the Ubuntu-64-DR.ova
+5. Click Next
+6. Ensure that the Reinitialize the MAC address of all selected network cards option is selected
+7. Click Import, this will start importing the VM and the process may take several minutes
+8. Verify that the Virtual Machine was successfully imported by selecting the new VM from the list in Virtual Box and clicking Start. A new window will open and begin loading your VM, if you are prompted to enter a password you have completed setting up your local dev environment.
+
+SSH into your local Virtual Machine
+1. On your local machine, open a terminal by launching the Terminal application
+2. In your terminal's command line, please enter the following: ssh vannberglab@localhost -p10022 and hit Enter
+3. You will be prompted for a password, the password is vannberglab
+
+Instructions for Windows Users
+Install Virtual Box and Import the Virtual Machine on Windows
+1. Install VirtualBox
+a. Select the appropriate VirtualBox installer for your OS
+b. Click through the dialogs and install VirtualBox
+c. Restart your computer
+d. Find "Oracle VM VirtualBox" in your applications and open the program
+2. In the VirtualBox window, select File -> Import Appliance...
+3. Click Open Appliance...
+4. Select the Ubuntu-64-DR.ova
+5. Click Next
+6. Ensure that the Reinitialize the MAC address of all selected network cards option is selected
+7. Click Import, this will start importing the VM and the process may take several minutes
+8. Verify that the Virtual Machine was successfully imported by selecting the new VM from the list in Virtual Box and clicking Start. A new window will open and begin loading your VM, if you are prompted to enter a password you have completed setting up your local dev environment.
+
+SSH into your local Virtual Machine
+1. Download and install an SSH client if you do not already have one. Some examples of popular SSH
+clients: PuTTY,OpenSSH, and WinSCP
+2. Open your SSH client, the following example will be using PuTTY
+3. Fill in the following information:
+Host Name (or IP Address): vannberglab@localhost Port: 10022
+4. Click Open
+5. A terminal will open and you will be prompted for a password, the password is vannberglab
+
+
+Figures
+
+1. bash scripts 
+	figures_run.sh
+	run for all figures
+	
+2. 1 3 model compare bar and roc  
+		R scripts:
+		source("bar.r")
+		source("roc.r")
+
+3. F2c GEO datasets density plot
+	All 3 GEO datasets are pre-processed with pipeline script from KEA Prediction_R package. Detailed readme file is provided there.
+	R script:
+	source("density_plot.r")
+
+4. F2d Response rate regression
+	scatter plot of predicted and observed ressponse rate and linear regression
+
+
+
+R package use for predicting drug response of patients
+
+
+Predicting drug response of patients
+
+This function predict drug response by using svm based recersive feature elimination.
+
+
+Requirement
+
+library affy
+install instruction:
+source("http://bioconductor.org/biocLite.R")
+biocLite("affy")
+
+Usage
+
+DrugResponse.predict(input file, inputfile_formate, sample_name, path_to_model_files’../data')
+
+Arguments
+
+patient_inputfile		gene expression data for patient.
+
+inputfile_formate     		input file formate, can be cel (cel file) or exp (gene expression file)
+
+patient_name     		patient name
+
+path.to.model     		where the model stored, default to '../data_fix'. 
+ 
+return a matrix of positive or negative score for each drug
+
+output pdf files of prediction score
+
+
+Install
+
+Download zip file and use install.package function in R to install
+R CMD INSTALL --merge-multiarch DrugResponse_*.tar.gz
+Unzip file and prepared model files in DrugResponse/data_fix folder (this model is pre-build by DrugResponse model program), and test files in DrugResponse/test_data folder
+
+
+Example
+
+input exp file
+DrugResponse.predict('../data/test_data/545R_992om_3ex.tsv','exp',cbind('545R','992om'),'../data_fix')
+
+input cel file
+DrugResponse.predict(patient_inputfile,'cel',patient name,'../data_fix')
+
+RMD bacth
+R -q -e "library(DrugResponse); library(affy); DrugResponse.predict('../data/test_data/545R_992om_3ex.tsv','exp',cbind('545R','992om'),'../data_fix')"
+
+
+Pipeline
+
+we provide a bash script to run test for cancer samples in pipeline folder
+DrugResponse_sample_test_GSE.sh 
+default model files is ../data_fix  You may change it to where you unzip the DrugResponse pacakge path_to_DrugResponse/data_fix.
+input: GSE number
+
+example (path here is for virtual box file system)
+
+run test for GSE sets
+# ./home/vannberglab/DrugResponse/pipeline/DrugResponse_sample_test_GSE.sh GSE30161
+
+run test for GSM samples
+# ./home/vannberglab/DrugResponse/pipeline/DrugResponse_sample_test_GSE.sh GSM1167083
+
+run test for cancer samples (CEL files)
+#./home/vannberglab/DrugResponse/pipeline/DrugResponse_sample_test_URL.sh 'path.to.test.samples.folder'
+
+run normalization for GSE sets
+# ./home/vannberglab/DrugResponse/pipeline/matrix_normalization/DrugResponse_sample_norm_GSE.sh GSE30161
+
+
+
+

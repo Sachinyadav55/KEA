@@ -1,0 +1,28 @@
+Kea package
+
+DrugResponse is a program that build drug response model base on NCI60 data set (U133_plus2.0), and output model for prediction of patients
+
+ Arguments:
+ inputfile     Processed NCI60 data set (drug_mas5_reduced.mat) 
+               drugname     8 FDA proved drugs
+               genename     gene ID
+               marker       probe level ID
+               name         59 cell lines name
+               x            gene expression
+               y            GI50
+ Output: 
+ txt
+               Test stats
+               Train and test cell lines
+               Selected gene and weights
+               Cell line scores
+ pdf
+               SVM prediction and stats of all cell lines
+
+Usage example:
+
+DrugResponse_main('drug_mas5_reduced.mat')
+
+
+
+Cai Huang 06/01/2016

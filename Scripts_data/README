@@ -1,0 +1,19 @@
+*Model compare
+	*2 cancer model versus 9 cancer model 
+		matlab script run:
+		Doxorubicin_run_stats.m
+	*Breast cancer cell lines test
+		3 models: gene_level_model, cancer_related_gene_model, and probe_level_model (best model)
+		matlab script run:
+		Doxorubicin_run_stats.m
+
+
+
+*NCI60 LOOV 
+	matlab script run:
+	master_run.m
+
+
+
+
+

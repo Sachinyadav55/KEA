@@ -1,0 +1,28 @@
+#This program is for academic research only.
+#copyright owned by Georgia Institute of Technology
+#© 2017 all rights reserved
+
+
+*Figures
+
+	Provide all plot scripts for this paper. All input data are pre-processed. Model build on row data is provide in KEA package folder. Detailed read me file inside.
+
+*Scripts_data
+
+	Provide all plot scripts for model testing. All input data are pre-processed. Model build on row data is provide in KEA package folder. Detailed read me file inside.
+
+
+*KEA package
+
+	NCI60_model_matlab
+
+		Matlab program build model and test on cell lines data sets. Detailed read me file inside.
+
+	Prediction_R_package
+
+		R package prediction on patient microarray data. Detailed read me file inside.
+
+
+*VM box
+	
+	Pre-build virtual machine. Patients test R package is installed and detailed pipeline read me file inside
